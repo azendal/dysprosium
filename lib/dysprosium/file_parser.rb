@@ -4,6 +4,7 @@ module Dysprosium
     COMMENTS_RGXP = /\/\*{2}((?:.(?!\*{2}\/)|\n(?!\*{2}\/))+.)\n?\*{2}\//
     DESCRIPTION_RGXP = /((?:.|\n(?!\s*@))+)/
     TAG_ATTRIBUTES = %w{tag name flags types code description}
+    TYPES = %w{module class interface namespace method attribute}
     
     def initialize(file)
       @file = file
@@ -22,21 +23,20 @@ module Dysprosium
       end
       
       def extract_description(comment)
-        hash = { 'description' => nil, 'tags' => [] }
+        hash = { 'type' => nil, 'description' => nil, 'tags' => [] }
         tags = comment.scan(DESCRIPTION_RGXP).flatten
         hash['description'] = tags.shift unless tags.first =~ /\A\s*@/
         tags.each do |tag|
-          hash['tags'] << extract_tag(tag)
+          hash['tags'] << extract_tag(tag) { |type| hash['type'] ||= type }
         end
         hash
       end
       
       def extract_tag(tag)
         Hash[*tag.match(TAGS_RGXP).captures.each_with_index.map do |attribute, index|
+          yield(attribute) if block_given? && index.zero? && TYPES.include?(attribute)
           [TAG_ATTRIBUTES[index], attribute]
         end.flatten]
       end
   end  
 end
-
-puts Dysprosium::FileParser.new('test.js').parse.inspect
