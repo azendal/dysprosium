@@ -1,4 +1,4 @@
-# Disprosium
+# Dysprosium
 
 ---
 
