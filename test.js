@@ -1,7 +1,8 @@
 /**
-Cesium CSS runtime library
- - asdas
- - asdasd
+## Cesium CSS runtime library
+
+* asdas
+* asdasd
 @example sad asd asd asd asd asd 
 @example sad asd asd asd asd asd 
 
@@ -39,8 +40,11 @@ Cesium = Cs = {
 		}
 	},
 	/**
-	Compiles a source code into a javascript data structure and appends all the rules
-	into the provided RuleTree
+    Compiles a source code into a javascript data structure and appends all the rules
+    into the provided RuleTree
+        def a
+          'a'
+        end
 	@method compile <public>
 	@argument sourceCode <required> [String]
 	@argument ruleTree <required> [RuleTree]

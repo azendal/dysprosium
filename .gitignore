@@ -1,0 +1,6 @@
+Thumbs.db
+*~
+.DS_Store
+dysprosium.gemspec
+pkg/**
+doc/**

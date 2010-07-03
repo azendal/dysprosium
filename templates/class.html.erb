@@ -2,7 +2,7 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
     <head>
-        <title>{{name}}</title>
+        <title><%= block.name %> Class</title>
         <style type="text/css" media="screen">
             /*
 
@@ -453,30 +453,55 @@
         </style>
     </head>
     <body style="font-size:100%">
-        <h1>{{name}}</h1>
-        <p>{{description}}</p>
+        <h1><%= block.name %></h1>
+        <p><%= block.description %></p>
         <h2>Examples</h2>
-        {{#examples}}
+        <% block.examples.each do |example| %>
         <pre style="border:dotted 1px black">
-            {{name}}{{description}}
+            <%= example %>
         </pre>
-        {{/examples}}
+        <% end %>
         <h2>Attributes</h2>
-        {{#attributes}}
-        <p>{{name}} {{flags}} {{types}} <span style="font-family:monospace">{{code}}</span></p>
-        <p>{{description}}</p>
-        {{/attributes}}
+        <% block.attributes.each do |attribute| %>
+        <p>
+            <%= attribute.name %> 
+            <%= attribute.flags %> 
+            <%= attribute.types %> 
+            <span style="font-family:monospace"><%= attribute.code %></span>
+        </p>
+        <p><%= attribute.description %></p>
+        <% end %>
         <h2>Methods</h2>
-        {{#methods}}
-            <div style="border-bottom:solid 1px black; margin-bottom:1em; padding-left:1em;">
-                <p>{{flags}} {{name}}({{#arguments}}{{name}}, {{/arguments}}) {{types}} <span style="font-family:monospace">{{code}}</span></p>
-                <p>{{description}}</p>
-                <span style="font-weight:bold">Arguments</span>
-                {{#arguments}}
-                    <p>{{name}} {{flags}} {{types}} <span style="font-family:monospace">{{code}}</span></p>
-                    <p>{{description}}</p>
-                {{/arguments}}
-            </div>
-        {{/methods}}
+        <p class="summary">
+            <% block.methods.each_with_index do |method, index| %>
+            <span>
+                <a href="#method-<%= index %>"><%= method.name %></a>
+            </span>
+            <% end %>
+        </div>
+        <% block.methods.each_with_index do |method, index| %>
+        <div style="border-bottom:solid 1px black; margin-bottom:1em; padding-left:1em;" id="method-<%= index %>">
+            <p>
+                <%= method.flags %> 
+                <%= method.name %>
+                (<%= method.arguments.map(&:name).join(',') %>) 
+                <%= method.types %> 
+                <span style="font-family:monospace"><%= method.code %></span>
+            </p>
+            <p><%= method.description %></p>
+            <span style="font-weight:bold">Arguments</span>
+            <% method.arguments.each do |argument| %>
+            <p>
+                <%= argument.name %> 
+                <%= argument.flags %> 
+                <%= argument.types %> 
+                <span style="font-family:monospace"><%= argument.code %></span>
+            </p>
+            <p>
+                <%= argument.description %>
+            </p>
+            <% end %>
+        </div>
+        <% end %>
     </body>
 </html>
