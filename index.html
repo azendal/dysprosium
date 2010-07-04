@@ -1,80 +1,156 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-
-	<title>azendal/dysprosium @ GitHub</title>
-	
-	<style type="text/css">
-		body {
-  		margin-top: 1.0em;
-  		background-color: #667ec2;
-		  font-family: "Helvetica,Arial,FreeSans";
-  		color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-		h1 { font-size: 3.8em; color: #99813d; margin-bottom: 3px; }
-		h1 .small { font-size: 0.4em; }
-		h1 a { text-decoration: none }
-		h2 { font-size: 1.5em; color: #99813d; }
-    h3 { text-align: center; color: #99813d; }
-    a { color: #99813d; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-		pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-	</style>
-	
-</head>
-
-<body>
-  <a href="http://github.com/azendal/dysprosium"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/azendal/dysprosium/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/azendal/dysprosium/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/azendal/dysprosium">dysprosium</a>
-      <span class="small">by <a href="http://github.com/azendal">azendal</a></span></h1>
-
-    <div class="description">
-      javascript code generator
-    </div>
-
-    <h2>Authors</h2>
-<p>Iván Valdés (@ivanvc) (iv@nvald.es)<br/>azendal (trasvina@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>fernando trasvina (trasvina@gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/azendal/dysprosium/zipball/master">zip</a> or
-      <a href="http://github.com/azendal/dysprosium/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/azendal/dysprosium</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/azendal/dysprosium">azendal/dysprosium</a>
-    </div>
-
-  </div>
-
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>Dysprosium</title>
+        <style type="text/css" media="screen">
+            body{
+                padding     : 10px;
+                font-family : Arial;
+            }
+            
+            .layout{
+                width  : 980px;
+                margin : 0 auto;
+            }
+            
+            .element{
+                border           : solid 2px #7F7F7F;
+                background-color : #404040;
+                font-size        : 96px;
+                padding          : 10px;
+                margin           : 10px;
+                float            : left;
+                text-align       : center;
+                color            : #FFFFFF;
+                position         : relative; 
+            }
+            
+            .element > .name{
+                font-size : 18px;
+            }
+            
+            .element > .number{
+                font-size : 18px;
+                position  : absolute;
+                right     : 10px;
+                top       : 10px;
+            }
+            
+            .content{
+                padding : 0 30px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="layout">
+            <div class="element">
+                <span class="symbol">Dy</span>
+                <br />
+                <span class="name">Dysprosium</span>
+                <div class="number">0.1</div>
+            </div>
+            <div style="clear:both">
+            </div>
+            <div class="content">
+                <p>JavaScript Documentation generator agnostic to the way the code is written. 
+                This is because its completely based on documentation blocks</p>
+                <h2>Installation</h2>
+                <pre>  gem install Dysprosium</pre>
+                <p>The generator is distributed as a Ruby gem. Why? because it is highly available and its such a cool language</p>
+                
+                <h2>Usage</h2>
+                <pre>
+  cd /path/to/javascript_files
+  dy file1.js file2.js
+                </pre>
+                <p>You can create a simbolic link of dy binary to your bin path so you can execute it in this way.</p>
+                
+                <h2>Example</h2>
+                <pre>
+  /**
+  A JavasScript documentation generator so we can all write javascript the cool way and document that the easy way
+  @class Dysprosium
+  @example "Simple Usage"
+    Dysprosium.parse(files);
+  **/
+  Class('Dysprosium')({
+      /**
+      Parses every documentation block on every file and outputs to html the generated documentation
+      @method parse &lt;public&gt;
+      @argument files <required> [Array] an array of files to parse for documentation
+      @return (null)
+      **/
+      parse : function(files){
+          //implementation
+      }
+  });
   
-</body>
+                </pre>
+                <h2>Documentation</h2>
+                <h3>Syntax</h3>
+                <h4>Documentation Block</h4>
+                <pre>
+  /**
+  documentation here :). yes you can put smileys too
+  **/
+                </pre>
+                <h4>Documentation Block Content</h4>
+                <pre>
+  /**
+  The first thing to do is describe what you are documenting. a good news is that you can use markdown to improve this.
+  so lets assume this is a class
+  @class Foo
+  @example simple example
+  @todo maybe improve the example dont you think?
+  **/
+                </pre>
+                <h4>Tag Syntax</h4>
+                <p>
+                    A pretty cool thing is that all tags follow the same syntax so you have to learn less
+                    <br />
+                    @tag name_of_tag &lt;flag,flag&gt; [Type|Object|String] ({id : Number, name : String}) and a description to clear things up
+                </p>
+                <p>
+                    Serious syntax my not look so appealing so lets look at some examples:
+                </p>
+                <pre>
+  // a class named Foo
+  @class Foo
+  
+  // a module named Bar
+  @module Bar
+  
+  // a simple example
+  @example new Foo();
+  
+  // a named example
+  @example "Create a Foo" var foo = new Foo();
+  
+  // a public attribute named fooInstance of type Foo
+  @attribute fooInstance &lt;public&gt; [Foo]
+  
+  // a required argument of type Object with the structure {width:Number, height:Number}
+  @argument config &lt;required&gt; [Object] ({width:Number, height:Number})
+                </pre>
+                
+                <h4>Available Tags and common forms</h4>
+                <ul>
+                    <li>@class name</li>
+                    <li>@module name</li>
+                    <li>@interface name</li>
+                    <li>@object name</li>
+                    <li>@namespace name</li>
+                    <li>@attribute name &lt;flag,flag&gt; [Type|Type] (true)</li>
+                    <li>@method name &lt;flag,flag&gt; [Type|Type] (true)</li>
+                    <li>@argument name &lt;flag,flag&gt; [Type|Type] (true) 'description</li>
+                    <li>@todo 'description</li>
+                    <li>@note 'description</li>
+                    <li>@example 'description</li>
+                    <li>@event click ({target : HTMLElement}) 'description</li>
+                    <li>@dispatch click</li>
+                </ul>
+            </div>
+        </div>
+    </body>
 </html>
