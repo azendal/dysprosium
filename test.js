@@ -37,7 +37,7 @@ Cesium = Cs = {
 	Gets a transformed selector for the Breezi application model to avoid collisions
 	@method getPrepend <public>
 	@argument cssClass <required> [String] the context css class for class rewrite
-	@returns [String]
+	@return [String]
 	**/
 	getPrepend: function(cssClass) {
 		if(this.config.type === 'app') {
@@ -57,7 +57,7 @@ Cesium = Cs = {
 	@argument sourceCode <required> [String]
 	@argument ruleTree <required> [RuleTree]
 	@argument options <optional> [Object] (undefined)
-	@returns [Boolean]
+	@return [Boolean] (true|false) the result of the compile
 	**/
 	compile: function(sourceCode, ruleTree, options) {
 		var parseCode; 

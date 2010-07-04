@@ -38,7 +38,7 @@ module Dysprosium
       end
       
       def dress_hash(hash)
-        hash['description'] = BlueCloth.new(hash['description']).to_html        
+        hash.description = BlueCloth.new(hash.description).to_html        
       end
       
       def create_directory

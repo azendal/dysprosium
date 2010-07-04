@@ -23,7 +23,8 @@
                 padding-left : 2em;
             }
             
-            .argument-section{
+            .argument-section,
+            .return-section{
                 padding-left : 4em;
             }
             
@@ -73,7 +74,7 @@
                 <h3><%= method.name %></h3>
                 <p>
                     <span class="flags"><%= (method.flags || '').split(',').join(' ') %></span>
-                    <span class="type"><%= method.types || 'undefined' %></span
+                    <span class="type"><%= method.types || method.returns.map(&:types).join('|') %></span
                     >:<span class="name"><%= method.name %></span
                     >(<span class="arguments"><%= method.arguments.map(&:name).join(', ') %></span>)
                     <span style="font-family:monospace"><%= "=#{method.code}" if method.code %></span>
@@ -94,6 +95,18 @@
                     <% end %>
                 </div>
                 <h4>Return</h4>
+                <div class="return-section">
+                    <% method.returns.each do |tag| %>
+                    <h5><%= tag.name %></h5>
+                    <p>
+                        <span class="flags"><%= (tag.flags || '').split(',').join(' ') %></span>
+                        <span class="type"><%= tag.types || 'Object' %></span
+                        ><span class="name"><%= tag.name %></span
+                        ><span style="font-family:monospace"><%= "=#{tag.code}" if tag.code %></span>
+                    </p>
+                    <p><%= tag.description %></p>
+                    <% end %>
+                </div>
             </div>
             <% end %>
         </div>
