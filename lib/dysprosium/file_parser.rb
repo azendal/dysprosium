@@ -1,6 +1,6 @@
 module Dysprosium
   class FileParser
-    TAGS_RGXP = /\n?\s*@(\w+)\s*(\w+)?(?:\s+\<([\w\|]+)\>)?(?:\s+\[([\w\|]+)\])?(?:\s+\(([^\)]+)\))?(?:\s+((?:.|\n(?!\s*@))+))?/
+    TAGS_RGXP = /\n?\s*@(\w+)\s*(\w+)?(?:\s+\<([\w\,]+)\>)?(?:\s+\[([\w\|]+)\])?(?:\s+\(([^\)]+)\))?(?:\s+((?:.|\n(?!\s*@))+))?/
     COMMENTS_RGXP = /\/\*{2}((?:.(?!\*{2}\/)|\n(?!\*{2}\/))+.)\n?\*{2}\//
     DESCRIPTION_RGXP = /((?:.|\n(?!\s*@))+)/
     TAG_ATTRIBUTES = %w{tag name flags types code description}

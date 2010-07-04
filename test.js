@@ -1,10 +1,14 @@
 /**
-## Cesium CSS runtime library
+Cesium CSS runtime library
 
 * asdas
 * asdasd
-@example sad asd asd asd asd asd 
-@example sad asd asd asd asd asd 
+@example no_name
+    asd
+    asd
+@example some_example
+    asd
+    asd
 
 @class Cesium
 **/
@@ -13,8 +17,7 @@ Cesium = Cs = {
     parsingString : '',
 	/**
 	A general configuration object for the compile time
-	@attribute config <public> [Object]
-    	({
+	@attribute config <public,static> [Object] ({
     		id      : null,
     		type    : null,
     		prepend : null
@@ -25,6 +28,11 @@ Cesium = Cs = {
 		type    : null,
 		prepend : null
 	},
+	/**
+	Holds the internal name of the class
+	@attribute _name <protected,static> [Object] ('')
+	**/
+	_name : ''
 	/**
 	Gets a transformed selector for the Breezi application model to avoid collisions
 	@method getPrepend <public>
