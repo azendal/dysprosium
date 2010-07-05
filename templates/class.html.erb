@@ -45,11 +45,11 @@
         <h2>Attributes</h2>
         <div id="attributes-section">
             <div class="attributes-summary">
-            <% block.attributes.each do |attribute, index| %>
+            <% block.attributes.each_with_index do |attribute, index| %>
                 <a href="#attribute-<%= index %>"><%= attribute.name %></a>
             <% end %>
             </div>
-            <% block.attributes.each do |attribute, index| %>
+            <% block.attributes.each_with_index do |attribute, index| %>
             <div id="attribute-<%= index %>" class="attribute">
                 <h3><%= attribute.name %></h3>
                 <p>
@@ -65,11 +65,11 @@
         <h2>Methods</h2>
         <div id="methods-section">
             <div class="methods-summary">
-            <% block.methods.each do |method, index| %>
+            <% block.methods.each_with_index do |method, index| %>
                 <a href="#method-<%= index %>"><%= method.name %></a>
             <% end %>
             </div>
-            <% block.methods.each do |method, index| %>
+            <% block.methods.each_with_index do |method, index| %>
             <div id="method-<%= index %>" class="attribute">
                 <h3><%= method.name %></h3>
                 <p>

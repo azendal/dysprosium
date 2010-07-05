@@ -21,7 +21,10 @@ module Dysprosium::Structure::DyPrimary
       attributes_extractor
       methods_extractor
     end
-    
+
+    def type
+    end
+
     private
       def attributes_extractor
         @attributes = extract_collection(:attribute) do |attribute| 
