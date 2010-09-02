@@ -1,4 +1,7 @@
 module Dysprosium::Structure
   class DyClass < DyModule
-  end  
+    def type
+      'class'
+    end
+  end
 end
