@@ -15,28 +15,31 @@ module Dysprosium
       extract_comments
     end
 
-    private
-      def extract_comments
-        @source.scan(COMMENTS_RGXP).flatten.map do |comment|
-          extract_description(comment)
-        end
+    def extract_comments
+      @source.scan(COMMENTS_RGXP).flatten.map do |comment|
+        extract_description(comment)
       end
-      
-      def extract_description(comment)
-        hash = { 'type' => nil, 'description' => nil, 'tags' => [] }
-        tags = comment.scan(DESCRIPTION_RGXP).flatten
-        hash['description'] = tags.shift unless tags.first =~ /\A\s*@/
-        tags.each do |tag|
-          hash['tags'] << extract_tag(tag) { |type| hash['type'] ||= type }
-        end
-        hash
+    end
+    
+    def extract_description(comment)
+      hash = { 'type' => nil, 'description' => nil, 'tags' => [] }
+      tags = comment.scan(DESCRIPTION_RGXP).flatten
+      hash['description'] = tags.shift unless tags.first =~ /\A\s*@/
+      tags.each do |tag|
+        hash['tags'] << extract_tag(tag) { |type| hash['type'] ||= type }
       end
-      
-      def extract_tag(tag)
-        Hash[*tag.match(TAGS_RGXP).captures.each_with_index.map do |attribute, index|
-          yield(attribute) if block_given? && index.zero? && TYPES.include?(attribute)
-          [TAG_ATTRIBUTES[index], attribute]
-        end.flatten]
-      end
+      hash
+    end
+    
+    def extract_tag(tag)
+      Hash[*tag.match(TAGS_RGXP).captures.each_with_index.map do |attribute, index|
+        yield(attribute) if block_given? && index.zero? && TYPES.include?(attribute)
+        [TAG_ATTRIBUTES[index], attribute]
+      end.flatten]
+    end
+    
+    private :extract_comments,
+      :extract_description,
+      :extract_tag
   end
 end
