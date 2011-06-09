@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title><%= "#{self[:namespace]} " if self[:namespace] %><%= self[:name] %></title>
+        <link rel="stylesheet" type="text/css" media="all" href="elastic.css" />
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="elastic.js"></script>
+    </head>
+    <body>
+        <div class="unit layout">
+            <div class="unit header">
+                <h1><%= self[:name] %></h1>
+            </div>
+            <div class="unit body">
+                <div class="unit">
+                    <h2>Description</h2>
+                    <%= self[:description] %>
+                </div>
+                <div class="unit">
+                    <h2>Attributes</h2>
+                    <ul>
+                        <% self[:attribute].sort{|a,b| a[:name] <=> b[:name] }.each do |a| %>
+                        <li><%= a[:name] %></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="unit">
+                    <h2>Methods</h2>
+                    <ul>
+                        <% self[:method].sort{|a,b| a[:name] <=> b[:name] }.each do |m| %>
+                        <li><%= m[:name] %></li>
+                        <% end %>
+                    </ul>
+                    <% self[:method].sort{|a,b| a[:name] <=> b[:name] }.each do |m| %>
+                    <div>
+                        <h3><%= m[:name] %></h3>
+                        <%= m[:description] %>
+                        <% if(m[:argument]) %>
+                        <div>
+                            <h4>Arguments</h4>
+                            <ul>
+                                <% (m[:argument] || []).sort{|a,b| a[:name] <=> b[:name] }.each do |ar| %>
+                                <li><%= ar[:name] %></li>
+                                <% end %>
+                            </ul>
+                        </div>
+                        <% end %>
+                    </div>
+                    <% end %>
+                </div>
+            </div>
+            <div class="unit footer">
+                
+            </div>
+        </div>
+    </body>
+</html>
