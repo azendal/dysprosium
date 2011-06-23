@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+    <head>
+        <title>Dysprosium</title>
+        <link rel="stylesheet" type="text/css" media="all" href="elastic.css" />
+        <script src="jquery.js" type="text/javascript"></script>
+        <script src="elastic.js"></script>
+    </head>
+    <body>
+        <div class="unit layout">
+            <div class="unit header">
+                <h1>Dysprosium Index file</h1>
+            </div>
+            <div class="unit body">
+                <div class="unit">
+                    <h2>Classes</h2>
+                    <ul>
+                        <% self[:classes].each do |c| %>
+                        <li><a href="<%= c[:name] %>.html"><%= c[:name] %></a></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="unit">
+                    <h2>Attributes</h2>
+                    <ul>
+                        <% self[:attributes].each do |a| %>
+                        <li><a href="<%= a[:name] %>.html"><%= a[:name] %></a></li>
+                        <% end %>
+                    </ul>
+                </div>
+                <div class="unit">
+                    <h2>Methods</h2>
+                    <ul>
+                        <% self[:methods].each do |m| %>
+                        <li><a href="<%= m[:name] %>.html"><%= m[:name] %></a></li>
+                        <% end %>
+                    </ul>
+                </div>
+            </div>
+            <div class="unit footer">
+                
+            </div>
+        </div>
+    </body>
+</html>

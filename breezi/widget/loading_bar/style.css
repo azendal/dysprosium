@@ -1,0 +1,77 @@
+.loading-bar-widget.loading-container {
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-color: #ebebeb;
+    z-index:1000;
+}
+.loading-bar-widget.hidden {
+    display:none;
+}
+.loading-bar-widget .ek-loader {
+    background-color: #121515;
+    color: #dee1e4;
+    font: 14px "Lucida Grande", Lucida, serif;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -khtml-border-radius: 10px;
+    width: 330px;
+    margin: 200px auto;
+    padding: 34px 0 38px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+}
+.loading-bar-widget .loading-border {
+    border: 1px solid #000;
+    margin: 1px auto 18px;
+    width: 280px;
+    height: 17px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+}
+.loading-bar-widget .loading-border .loading-bar {
+    background-image: -moz-linear-gradient(top, #1d2122, #363a3e);
+    -moz-background-clip: padding;
+    -moz-border-radius: 10px;
+    -moz-box-shadow: inset 0 1px 1px #292e2f;
+    background-image: -webkit-gradient(linear, center top, center bottom, from(#1d2122), to(#363a3e));
+    -webkit-background-clip: padding-box;
+    -webkit-border-radius: 10px;
+    -webkit-box-shadow: inset 0 1px 1px #292e2f;
+    background-color: transparent;
+    background-clip: padding-box;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 1px #292e2f;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#1d2122, endColorstr=#363a3e);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#1d2122, endColorstr=#363a3e)";
+}
+.loading-bar-widget .loading-border .loading-bar .loading-percent {
+    height: 17px;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -khtml-border-radius: 10px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background: #144b53 url('/images/loader.gif') top left repeat-x;
+    -moz-box-shadow: inset 0 1px 1px rgba(255, 255, 255, .15);
+    -webkit-box-shadow: inset 0 1px 1px rgba(255, 255, 255, .15);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, .15);
+    -webkit-transition: width .5s ease;
+    -moz-transition: width .5s ease;
+    -transition: width .5s ease;
+    -o-transition: width .5s ease;
+}
+.loading-bar-widget .loading-info {
+    width: 280px;
+    margin: 0 auto -10px;
+    text-align: center;
+}
+.loading-bar-widget .loading-info p {
+    text-shadow: 0 -1px 1px #000;
+    margin: 0;
+    padding: 0;
+}

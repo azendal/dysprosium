@@ -1,10 +1,11 @@
 require 'rubygems'
-gem 'bluecloth'
+require 'bundler/setup'
 require 'bluecloth'
 require 'erb'
 require 'fileutils'
 require 'json'
 require 'mustache'
+require 'ruby-debug'
 
 module Dysprosium
   
@@ -14,10 +15,11 @@ module Dysprosium
         index          = generate_index_from parsed_sources
         
         parsed_sources.each do |parsed_source|
+            next if parsed_source.nil? || parsed_source[:type].nil?
             html_code = generate_file "#{template}/#{parsed_source[:type]}.erb", parsed_source
             File.open("#{template}/#{parsed_source[:name]}.html", 'w').puts(html_code)
-        end
-        
+        end unless parsed_sources.nil?
+         
         index_file = generate_file "#{template}/index.erb", index
 
         File.open("#{template}/index.html", 'w').puts(index_file)
@@ -42,8 +44,9 @@ module Dysprosium
         }
         
         parsed_sources.each do |parsed_source|
+            next if parsed_source.nil?
             
-            (index[parsed_source[:type].to_sym] ||= []) << parsed_source
+            (index[parsed_source[:type].to_sym] ||= []) << parsed_source if parsed_source[:type]
             
             (parsed_source[:attribute] || []).each do |attribute|
                 index[:attributes] << attribute
@@ -53,7 +56,7 @@ module Dysprosium
                 index[:methods] << method
             end
             
-        end
+        end unless parsed_sources.nil?
         
         index[:attributes].sort! do |a,b|
             b[:name] <=> a[:name]
@@ -81,6 +84,7 @@ module Dysprosium
             comments      = get_comments_from(source)
             parsed_source = comments.shift
             comments.each do |comment|
+                next if comment[:type].nil?
                 (parsed_source[comment[:type].to_sym] ||= []) << comment
             end
             parsed_source
@@ -109,8 +113,8 @@ module Dysprosium
                         :description => tag_captures[5].nil? ? '' : clean_description(tag_captures[5], identation_spaces)
                     }
                 end
-                
-                comment = tags.shift
+
+                comment = tags.shift || {}
                 comment[:description] = description unless description.empty?
 
                 tags.each do |tag|
@@ -441,4 +445,5 @@ Class(Breezi.Api, 'Scroller2')({
 });
 EOS
 
-puts Dy::generate_doc_for(source, '.')
+puts Dy::generate_doc_for('breezi/widget/loading_bar.js', 'default')
+# puts Dy::generate_doc_for(source, 'default')
